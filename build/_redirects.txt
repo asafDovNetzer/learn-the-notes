@@ -1,2 +1,1 @@
-/game-data        /
-/about           /
+/* /index.html 200
