@@ -21,7 +21,7 @@
 }
 
 .Button:disabled {
-  transform: translateY(-500px);
+  transform: translateY(-1000px);
 }
 
 @media (max-width: 499px) {
@@ -29,6 +29,12 @@
     width: 100%;
     border-radius: unset;
     height: unset;
+  }
+  .Button:hover {
+    background-color: white;
+  }
+  .Button:active {
+    background-color: #2dc21a;
   }
 }
 
