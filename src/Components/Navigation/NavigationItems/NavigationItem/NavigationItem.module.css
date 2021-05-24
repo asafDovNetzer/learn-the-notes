@@ -1,0 +1,34 @@
+.NavigationItem {
+  margin: 6px;
+  min-width: 60px;
+  display: flex;
+  height: 100%;
+  width: auto;
+  align-items: center;
+  text-align: center;
+  transition: background-color 0.2s;
+}
+
+.NavigationItem a {
+  color: rgb(43, 43, 43);
+  height: 100%;
+  padding: 12px 10px;
+  border-radius: 20px;
+  margin: auto;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s, transform 0.2s;
+}
+
+.NavigationItem a:hover,
+.NavigationItem a:active,
+.NavigationItem a.active {
+  transform: none;
+  background-color: rgb(4, 182, 28);
+  color: white;
+}
+.NavigationItem a:hover {
+  transform: translateY(14px);
+}
+.NavigationItem a:active {
+  transform: translateY(16px);
+}

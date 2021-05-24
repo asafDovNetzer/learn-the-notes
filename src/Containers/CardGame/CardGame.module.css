@@ -1,0 +1,9 @@
+.CardGame {
+  padding-top: 140px;
+}
+
+@media (max-width: 499px) {
+  .CardGame {
+    padding-top: 100px;
+  }
+}

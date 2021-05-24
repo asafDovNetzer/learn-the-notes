@@ -1,0 +1,83 @@
+.Toolbar {
+  height: 60px;
+  width: 100%;
+  min-width: 702px;
+  position: fixed;
+  padding: 0;
+  top: 10px;
+  left: 0;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  box-sizing: border-box;
+  z-index: 90;
+  transition: top 0.3s, opacity 0.3s;
+  box-shadow: 0px 2px 6px rgb(56, 56, 56);
+}
+
+.Toolbar header {
+  padding: 0;
+}
+
+.Toolbar nav {
+  padding: 0;
+}
+
+.Toolbar h1 {
+  color: white;
+  font-size: 220%;
+  font-weight: 100;
+  margin-bottom: -6px;
+  letter-spacing: 2px;
+}
+
+.Link {
+  height: 100%;
+  width: 60px;
+  color: rgb(71, 71, 71);
+  background-color: inherit;
+  border: none;
+}
+
+.SignedIn {
+  color: rgb(4, 182, 28);
+}
+
+.Link:hover {
+  background-color: rgb(230, 230, 230);
+}
+
+.Link svg {
+  height: 100%;
+  display: block;
+  margin: auto auto;
+}
+
+.Hidden {
+  top: 0px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.Toolbar img {
+  height: 70px;
+}
+
+@media (max-width: 499px) {
+  .Toolbar {
+    width: 100vw;
+    min-width: unset;
+    height: 50px;
+  }
+  .Toolbar h1 {
+    font-size: 160%;
+  }
+  .DesktopOnly {
+    display: none;
+  }
+  .Toolbar img {
+    height: 40px;
+  }
+}

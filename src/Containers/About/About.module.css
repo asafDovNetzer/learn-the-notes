@@ -1,0 +1,27 @@
+.About {
+  display: block;
+  margin-top: 60px;
+  padding: 20px 8vw;
+  text-align: center;
+  font-weight: 400;
+  height: 80vh;
+  display: grid;
+  grid-template-rows: 0.8fr 1.5fr 1fr 1fr 1fr 1fr;
+  row-gap: 10px;
+  column-gap: 10px;
+}
+
+.About p {
+  font-size: 120%;
+  line-height: 40px;
+  margin: 0px 10px;
+  display: block;
+  color: rgb(53, 52, 52);
+}
+.About a {
+  text-decoration: none;
+  color: green;
+}
+.About strong {
+  color: rgb(0, 175, 0);
+}

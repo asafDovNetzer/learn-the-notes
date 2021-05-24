@@ -1,0 +1,33 @@
+.Note {
+  width: 100%;
+}
+.Note button {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 6px;
+  border: none;
+  font-family: inherit;
+  background-color: white;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  transition: background-color 0.2s, transform 0.4s;
+}
+
+.Note button:hover {
+  transform: translateX(6px);
+  background-color: rgb(37, 204, 37);
+}
+
+.Darker button {
+  background-color: rgb(244, 244, 244);
+}
+
+.Note p {
+  margin: 6px 0px;
+  padding: 0px 0px;
+  text-align: center;
+  font-style: normal;
+  font-weight: 400;
+  transition: transform 0.2s;
+}

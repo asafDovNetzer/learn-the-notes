@@ -1,0 +1,21 @@
+.App {
+  margin: auto auto;
+  width: 80%;
+  min-width: 620px;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  top: 0px;
+  padding-top: 40px;
+}
+
+.NoScroll {
+  overflow-y: hidden;
+}
+
+@media (max-width: 499px) {
+  .App {
+    height: 140%;
+    width: 100%;
+    min-width: unset;
+  }
+}

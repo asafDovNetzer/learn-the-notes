@@ -1,0 +1,39 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d3d23635.chunk.css",
+    "main.js": "/static/js/main.362334bb.chunk.js",
+    "main.js.map": "/static/js/main.362334bb.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.0dcdda69.js",
+    "runtime-main.js.map": "/static/js/runtime-main.0dcdda69.js.map",
+    "static/js/2.ead0a25c.chunk.js": "/static/js/2.ead0a25c.chunk.js",
+    "static/js/2.ead0a25c.chunk.js.map": "/static/js/2.ead0a25c.chunk.js.map",
+    "static/css/3.7ad58e47.chunk.css": "/static/css/3.7ad58e47.chunk.css",
+    "static/js/3.fba004c9.chunk.js": "/static/js/3.fba004c9.chunk.js",
+    "static/js/3.fba004c9.chunk.js.map": "/static/js/3.fba004c9.chunk.js.map",
+    "static/css/4.44f14186.chunk.css": "/static/css/4.44f14186.chunk.css",
+    "static/js/4.3ace05ea.chunk.js": "/static/js/4.3ace05ea.chunk.js",
+    "static/js/4.3ace05ea.chunk.js.map": "/static/js/4.3ace05ea.chunk.js.map",
+    "static/css/5.663167e6.chunk.css": "/static/css/5.663167e6.chunk.css",
+    "static/js/5.ef043d4e.chunk.js": "/static/js/5.ef043d4e.chunk.js",
+    "static/js/5.ef043d4e.chunk.js.map": "/static/js/5.ef043d4e.chunk.js.map",
+    "static/js/6.4124568b.chunk.js": "/static/js/6.4124568b.chunk.js",
+    "static/js/6.4124568b.chunk.js.map": "/static/js/6.4124568b.chunk.js.map",
+    "static/js/7.9860a541.chunk.js": "/static/js/7.9860a541.chunk.js",
+    "static/js/7.9860a541.chunk.js.map": "/static/js/7.9860a541.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/3.7ad58e47.chunk.css.map": "/static/css/3.7ad58e47.chunk.css.map",
+    "static/css/4.44f14186.chunk.css.map": "/static/css/4.44f14186.chunk.css.map",
+    "static/css/5.663167e6.chunk.css.map": "/static/css/5.663167e6.chunk.css.map",
+    "static/css/main.d3d23635.chunk.css.map": "/static/css/main.d3d23635.chunk.css.map",
+    "static/js/2.ead0a25c.chunk.js.LICENSE.txt": "/static/js/2.ead0a25c.chunk.js.LICENSE.txt",
+    "static/js/7.9860a541.chunk.js.LICENSE.txt": "/static/js/7.9860a541.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/static/media/b7.5b635192.jpg",
+    "static/media/bootstrap-icons.svg": "/static/media/bootstrap-icons.04997122.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0dcdda69.js",
+    "static/js/2.ead0a25c.chunk.js",
+    "static/css/main.d3d23635.chunk.css",
+    "static/js/main.362334bb.chunk.js"
+  ]
+}

@@ -1,0 +1,23 @@
+.Chart {
+  width: 80vw;
+  max-width: 500px;
+  height: min-content;
+  padding: 2vw 2vh;
+  border-radius: 10px;
+  position: absolute;
+  position: fixed;
+  top: 45vh;
+  right: calc(50vw - 250px);
+  z-index: 200;
+  background-color: rgb(255, 255, 255);
+}
+
+@media (max-width: 499px) {
+  .Chart {
+    width: 96vw;
+    height: min-content;
+    top: 50vh;
+    border-radius: 0px;
+    right: 0;
+  }
+}
