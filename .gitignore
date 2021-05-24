@@ -8,8 +8,8 @@
 # testing
 /coverage
 
-/learn-the-notes/public
-/learn-the-notes/src
+/learn-the-notes/public/
+/learn-the-notes/src/
 
 # misc
 .DS_Store
