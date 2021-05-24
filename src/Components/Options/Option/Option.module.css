@@ -13,7 +13,7 @@
   border-left: 1px solid white;
   outline: none;
   transition: background-color 0.2s ease-out, transform 0.5s, visibility 0s 1s,
-    position 0s ease-in 1s;
+    position 0s ease-in 1s, opacity 0.2s;
 }
 
 .Button:hover {
@@ -21,7 +21,7 @@
 }
 
 .Button:disabled {
-  transform: translateY(-1000px);
+  opacity: 0;
 }
 
 @media (max-width: 499px) {
