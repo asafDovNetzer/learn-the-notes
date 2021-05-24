@@ -1,6 +1,0 @@
-.Settings {
-  width: 100%;
-  display: grid;
-  margin-top: 20px;
-  grid-template-columns: 1fr 1fr;
-}

@@ -1,9 +1,0 @@
-.Img {
-  width: 200px;
-  height: 200px;
-  border-radius: 30px;
-  position: fixed;
-  top: 10vh;
-  right: calc(50vw - 100px);
-  z-index: 200;
-}
