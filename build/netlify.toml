@@ -2,4 +2,8 @@
   from = "/*"
   to = "/"
   status = 200
+<<<<<<< HEAD
   force = false
+=======
+  force = false
+>>>>>>> bb8a29e04124fbec59121ffb2ad5cea557ce08e7
