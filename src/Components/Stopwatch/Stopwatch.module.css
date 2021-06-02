@@ -30,6 +30,7 @@
     width: 80px;
     height: 80px;
     left: -6px;
+    top: 10vh;
   }
   .Stopwatch p {
     font-size: 140%;
