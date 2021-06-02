@@ -5,7 +5,7 @@ import * as optionLogic from "../helperFunctions/OptionLogic";
 import * as dataLogic from "../helperFunctions/DataLogic";
 
 const initialState = {
-  notesArray: init.createNoteList(),
+  notesArray: null,
   options: init.createOptions(),
   currentNote: null,
   nextNote: null,
@@ -16,24 +16,31 @@ const initialState = {
   symbolType: false,
   avarageTime: null,
   user: null,
+  difficulty: true,
 };
-
-(function () {
-  initialState.currentNote =
-    initialState.notesArray.G[noteLogic.pickRandomNumber(23) - 1];
-  initialState.nextNote =
-    initialState.notesArray.F[noteLogic.pickRandomNumber(23) - 1];
-})();
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.SET_FIRST_NOTES:
+      return {
+        ...state,
+        currentNote: state.notesArray.G[0],
+        nextNote: state.notesArray.G[1],
+      };
+    case actionTypes.INIT_NOTES:
+      return {
+        ...state,
+        notesArray: init.createNoteList(action.difficulty),
+        difficulty: action.difficulty,
+      };
     case actionTypes.LOGOUT_SUCCESS:
       return {
         ...state,
         user: null,
-        notesArray: init.createNoteList(),
+        notesArray: null,
         answers: [],
         symbolType: false,
+        difficulty: null,
       };
     case actionTypes.LOGIN_SUCCESS:
       return {
@@ -47,13 +54,19 @@ const reducer = (state = initialState, action) => {
         answers: action.answers ? action.answers : state.answers,
         symbolType: action.symbolType,
         avarageTime: dataLogic.calcAvarageTime(action.answers),
+        currentNote: action.notesArray
+          ? action.notesArray.G[0]
+          : state.currentNote,
+        nextNote: action.notesArray ? action.notesArray.G[1] : state.nextNote,
+        difficulty: true,
       };
     case actionTypes.DELETE_STORAGE:
       return {
         ...state,
-        notesArray: init.createNoteList(),
+        notesArray: null,
         answers: [],
         symbolType: false,
+        difficulty: null,
       };
     case actionTypes.NEXT_CARD:
       return {

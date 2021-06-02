@@ -5,22 +5,32 @@ import Aux from "../../hoc/Auxiliary";
 import Toolbar from "../Navigation/Toolbar/Toollbar";
 import AuthModel from "../../Containers/Auth/AuthModel";
 import Backdrop from "../UI/Backdrop/Backdrop";
+import Difficulty from "../Difficulty/Difficulty";
 
 class Layout extends Component {
   backdropHandler = () => {
     this.props.onUserPress(false);
   };
 
+  onChooseDifficulty = (difficulty) => {
+    this.props.setDifficultyLevel(difficulty);
+  };
+
   render() {
     const authModel = this.props.modelState ? <AuthModel /> : null;
+
+    const difficultyDiv = !this.props.difficulty ? (
+      <Difficulty handler={this.onChooseDifficulty} />
+    ) : null;
 
     return (
       <Aux>
         <Toolbar />
         {authModel}
+        {difficultyDiv}
         <Backdrop
           closeModal={this.backdropHandler}
-          show={this.props.modelState}
+          show={!!authModel || !!difficultyDiv}
         />
         <main>{this.props.children}</main>
       </Aux>
@@ -31,6 +41,7 @@ class Layout extends Component {
 const mapStateToProps = (state) => {
   return {
     modelState: state.website.modelState,
+    difficulty: state.cardGame.difficulty,
   };
 };
 
@@ -40,6 +51,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(actions.clearErrors());
       dispatch(actions.toggleModel(newState));
     },
+    setDifficultyLevel: (difficulty) =>
+      dispatch(actions.initNotesArray(difficulty)),
   };
 };
 

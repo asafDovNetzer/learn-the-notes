@@ -2,7 +2,12 @@ import React from "react";
 import classes from "./Option.module.css";
 
 const option = (props) => {
-  const className = [classes.Button];
+  const className = [
+    classes.Button,
+    props.rightAnswer?.noteName === props.answer && props.answer === props.note
+      ? classes.Correct
+      : null,
+  ];
 
   switch (props.index) {
     case 0:

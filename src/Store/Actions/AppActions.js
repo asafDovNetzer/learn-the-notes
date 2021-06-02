@@ -1,5 +1,18 @@
 import * as actionTypes from "./actionTypes";
 
+export const setFirstNotes = () => {
+  return {
+    type: actionTypes.SET_FIRST_NOTES,
+  };
+};
+
+export const initNotesArray = (difficulty) => {
+  return {
+    type: actionTypes.INIT_NOTES,
+    difficulty: difficulty,
+  };
+};
+
 export const changeSymbols = () => {
   return {
     type: actionTypes.CHANGE_SYMBOLS,

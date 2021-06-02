@@ -17,6 +17,15 @@
   transition: background-color 0.2s;
 }
 
+.Success {
+  background-color: transparent;
+  z-index: 20;
+  position: static;
+  transform: translate(200px, -300px);
+  font-size: 600%;
+  color: rgb(4, 182, 28);
+}
+
 .Card svg {
   margin-left: 12px;
   color: rgb(4, 182, 28);
@@ -58,5 +67,46 @@
   100% {
     transform: rotateY(0deg);
     opacity: 1;
+  }
+}
+
+.First {
+  position: absolute;
+  background: transparent;
+  height: 100px;
+  width: 200px;
+  top: 15vh;
+  right: calc(50vw - 100px);
+  font-family: inherit;
+  animation-name: fade;
+  animation-duration: 4s;
+}
+
+.First h1 {
+  font-family: inherit;
+  text-align: center;
+  color: green;
+}
+
+.None {
+  display: none;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 499px) {
+  .Card {
+    width: 200px;
+    height: 200px;
+  }
+  .Card img {
+    width: 200px;
   }
 }

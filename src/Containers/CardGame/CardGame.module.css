@@ -1,5 +1,6 @@
 .CardGame {
   padding-top: 140px;
+  width: 100%;
 }
 
 @media (max-width: 499px) {

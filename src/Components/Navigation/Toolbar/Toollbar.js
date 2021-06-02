@@ -36,6 +36,7 @@ class Toolbar extends Component {
         </nav>
         <button
           data-tip={userIconHoverM}
+          data-effect="solid"
           className={classes.Link}
           onClick={this.onUserClick}
         >

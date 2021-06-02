@@ -2,8 +2,8 @@
   margin: 10px 10px;
   box-sizing: border-box;
   position: absolute;
-  top: 24vh;
-  right: 20px;
+  top: 14vh;
+  left: 20px;
   padding: 10px;
   width: 100px;
   height: 100px;
@@ -16,11 +16,22 @@
 }
 
 .Hidden {
-  transform: translateX(260px);
+  transform: translatey(-260px);
 }
 
 .Stopwatch p {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 200%;
   margin: auto auto;
+}
+
+@media (max-width: 499px) {
+  .Stopwatch {
+    width: 80px;
+    height: 80px;
+    left: -6px;
+  }
+  .Stopwatch p {
+    font-size: 140%;
+  }
 }

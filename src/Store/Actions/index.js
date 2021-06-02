@@ -6,6 +6,8 @@ export {
   flagRightAnswer,
   flagWrongAnswer,
   tick,
+  initNotesArray,
+  setFirstNotes,
 } from "./AppActions";
 
 export {

@@ -5,11 +5,15 @@ import Options from "../../Components/Options/Options";
 import { connect } from "react-redux";
 import * as actions from "../../Store/Actions/index";
 import Stopwatch from "../../Components/Stopwatch/Stopwatch";
+import Spinner from "../../Components/UI/Spinner/Spinner";
+import Aux from "../../hoc/Auxiliary";
 
 class CardGame extends Component {
   state = {
     eventFunction: null,
     interval: null,
+    thisKey: null,
+    playedNote: null,
   };
   componentDidMount() {
     const thisObject = this;
@@ -18,7 +22,7 @@ class CardGame extends Component {
 
     if (window.outerWidth >= 500) {
       eventFunction = function () {
-        if (window.scrollY >= 50) {
+        if (window.scrollY >= 20) {
           thisObject.props.onResume();
           thisObject.startStopwatch();
         }
@@ -40,7 +44,7 @@ class CardGame extends Component {
       document.body.addEventListener(`touchmove`, eventFunction);
     }
 
-    this.setState({ eventFunction: eventFunction });
+    this.setState({ eventFunction: eventFunction, thisKey: this });
   }
 
   startStopwatch = () => {
@@ -76,19 +80,35 @@ class CardGame extends Component {
     }
   }
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.notesArray && !nextProps.currentNote)
+      prevState.thisKey?.props.onNoteArrayMount();
+
+    return {
+      ...prevState,
+      // playedNote: nextProps.currentNote?.noteName,
+    };
+  }
+
   checkAnswer = (answer) => {
     const cardGameEl = document.getElementById(`cardGame`);
 
     cardGameEl.scrollIntoView({ behavior: "smooth" });
 
     if (answer === this.props.currentNote.noteName) {
-      this.props.onRightTry(this.props.currentNote);
-      this.props.onCardChange();
+      const thisK = this;
+
+      setTimeout(function () {
+        thisK.props.onRightTry(thisK.props.currentNote);
+        thisK.props.onCardChange();
+      }, 1000);
     }
 
     if (answer !== this.props.currentNote.noteName) {
       this.props.onWrongTry(answer);
     }
+
+    this.setState({ playedNote: answer });
   };
 
   startButtonHandler = () => {
@@ -100,26 +120,39 @@ class CardGame extends Component {
   };
 
   render() {
+    let cardGame = <Spinner />;
+
+    if (this.props.nextNote) {
+      cardGame = (
+        <Aux>
+          <Card
+            isRunning={this.props.isRunning}
+            time={this.props.time}
+            note={this.props.currentNote}
+            nextNote={this.props.nextNote?.fileName}
+            handler={this.startButtonHandler}
+            answer={this.state.playedNote}
+          />
+          <Options
+            options={this.props.options}
+            symbolType={this.props.symbolType}
+            isRunning={this.props.isRunning}
+            handler={(answer) => this.checkAnswer(answer)}
+            rightAnswer={this.props.currentNote}
+            answer={this.state.playedNote}
+          />
+          <Stopwatch
+            time={this.props.time}
+            interval={this.state.interval}
+            isRunning={this.props.isRunning}
+          />
+        </Aux>
+      );
+    }
+
     return (
       <div id="cardGame" className={classes.CardGame}>
-        <Card
-          isRunning={this.props.isRunning}
-          time={this.props.time}
-          note={this.props.currentNote}
-          nextNote={this.props.nextNote?.fileName}
-          handler={this.startButtonHandler}
-        />
-        <Options
-          options={this.props.options}
-          symbolType={this.props.symbolType}
-          isRunning={this.props.isRunning}
-          handler={(answer) => this.checkAnswer(answer)}
-        />
-        <Stopwatch
-          time={this.props.time}
-          interval={this.state.interval}
-          isRunning={this.props.isRunning}
-        />
+        {cardGame}
       </div>
     );
   }
@@ -150,7 +183,9 @@ const mapDispatchToProps = (dispatch) => {
     onPause: () => dispatch(actions.pauseGame()),
     onResume: () => dispatch(actions.resumeGame()),
     onTick: () => dispatch(actions.tick()),
+    onNoteArrayMount: () => dispatch(actions.setFirstNotes()),
   };
 };
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardGame);

@@ -1,17 +1,25 @@
+// import { CLEAR_ERRORS } from "../Actions/actionTypes";
+
 export const pickRandomNumber = (number) =>
   Math.floor(Math.random() * number) + 1;
 
-export const replaceNextNote = (allNotes, currentNote, answers) => {
-  const clef = currentNote.clef === `F` ? `G` : `F`;
+export const replaceNextNote = (allNotes, currentNote) => {
+  const allNotesArray = [...allNotes[`F`].slice(), ...allNotes[`G`].slice()];
 
-  const notesWithDifferentClef = allNotes[clef]
-    .slice()
-    .sort((a, b) => b.value - a.value);
+  const onlyUnlockedNotes = allNotesArray.filter((note) => !note.locked);
 
-  const cycleOfGames = answers.length % 3;
+  // console.log(onlyUnlockedNotes);
 
-  const nextNote =
-    notesWithDifferentClef[9 * cycleOfGames - 1 + pickRandomNumber(5)];
+  const notesWithoutLastNote = onlyUnlockedNotes
+    .filter((note) => note.fileName !== currentNote.fileName)
+    .sort((a, b) => b.sincePlayed - a.sincePlayed);
+
+  const q1 = pickRandomNumber(6);
+  const q2 = pickRandomNumber(6);
+
+  const diceRoll = q1 + q2;
+
+  const nextNote = notesWithoutLastNote[Math.abs(7 - diceRoll)];
 
   return nextNote;
 };
@@ -23,42 +31,90 @@ export const updateNotes = (
   tries,
   avarageTime
 ) => {
-  const notesWithSameClef = allNotes[rightAnswer.clef].slice();
+  // CREATE COPY OF SPREAD-OUT ARRAY //
 
-  const notesWithoutRightAnswer = notesWithSameClef.filter(
-    (note) => note.fileName !== rightAnswer.fileName
-  );
+  const allNotesArray = [...allNotes[`F`].slice(), ...allNotes[`G`].slice()];
 
-  const trueRightAnswer = notesWithSameClef.find(
-    (note) => note.fileName === rightAnswer.fileName
-  );
+  // SETTING UP FACTORS FOR CALCULATION //
 
   const triesFactor = tries < 4 ? tries ** 2 : 16;
   const timeBase = avarageTime ? avarageTime : 5;
   const timeFactor = ((time < 20 ? time : 20) / timeBase) * 5;
+
+  // CALCULATING NEW VALUE BEFORE AVARAGE CALC //
+
   const newValue = (23 - triesFactor - timeFactor) / 23;
 
-  const valuesArray = [
-    ...trueRightAnswer.valuesArray,
-    newValue >= 0 ? newValue : 0,
-  ];
+  // CHOOSING ALL UNLOCKED NOTES //
+  const unlockedNotes = allNotesArray.filter((note) => !note.locked);
 
-  const reducer = (accum, current) => accum + current;
+  unlockedNotes.forEach((note) => {
+    if (!note.valuesArray) note.valuesArray = [];
 
-  const avarageValue = valuesArray.reduce(reducer, 0) / valuesArray.length;
+    if (note.fileName === rightAnswer.fileName) {
+      const valuesArray = [...note.valuesArray, newValue >= 0 ? newValue : 0];
 
-  const newRightAnswer = {
-    ...trueRightAnswer,
-    value: avarageValue,
-    valuesArray: valuesArray,
-  };
+      // SETTING UP ACCUMULATOR AND CALCULATIONG AVARAGE //
+      const reducer = (accum, current) => accum + current;
+      const avarageValue = valuesArray.reduce(reducer, 0) / valuesArray.length;
 
-  notesWithoutRightAnswer.push(newRightAnswer);
+      note.value = avarageValue;
+      note.valuesArray = valuesArray;
+      note.sincePlayed = 0;
+    }
+  });
+
+  // console.log(unlockedNotes);
+
+  const numberOfUnlocked = unlockedNotes.length;
+
+  // CHECK IF ANY NOTE NEEDS TO BE LOCKED OR UNLOCKED //
+  let conditionalAddition = 1;
+
+  unlockedNotes.forEach((note) => {
+    const locked =
+      note.valuesArray?.length >= 3 &&
+      note.value < 0.4 &&
+      numberOfUnlocked >= 7;
+    // console.log(locked, `locked`);
+    // CHANGE TO 5 AFTER TESTING //
+    const wellKnown = note.valuesArray?.length >= 2 && note.value > 0.6;
+    // console.log(wellKnown, `wellknown`);
+
+    if (!wellKnown) conditionalAddition = 0;
+
+    note.locked = locked;
+    note.sincePlayed++;
+  });
+
+  // console.log(unlockedNotes, `unlocked`);
+  const filteredUnlockedNotes = unlockedNotes.filter((note) => !note.locked);
+
+  // CHOOSING ALL LOCKED NOTES //
+
+  const lockedNotes = allNotesArray.filter((note) => note.locked);
+
+  lockedNotes.forEach((note, index) => {
+    if (!note.valuesArray) note.valuesArray = [];
+
+    if (index < conditionalAddition) {
+      // console.log(`unlocking`, index);
+      note.locked = false;
+    }
+  });
+
+  // console.log(lockedNotes);
+
+  const newAllNotes = [...lockedNotes, ...filteredUnlockedNotes].sort(
+    (a, b) => b.value - a.value
+  );
 
   const notesArray = {
-    ...allNotes,
-    [rightAnswer.clef]: notesWithoutRightAnswer,
+    F: newAllNotes.filter((note) => note.clef === `F`),
+    G: newAllNotes.filter((note) => note.clef === `G`),
   };
+
+  // console.log(notesArray);
 
   return notesArray;
 };

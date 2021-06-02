@@ -7,22 +7,32 @@
   grid-template-columns: repeat(3, 1fr);
   column-gap: 6px;
   border: none;
+  color: inherit;
   font-family: inherit;
-  background-color: white;
-  border-top-left-radius: 6px;
-  border-bottom-left-radius: 6px;
-  transition: background-color 0.2s, transform 0.4s;
+  background-color: transparent;
+  transition: background-color 0.2s, transform 0.4s, border-top-left-radius 0.3s,
+    border-bottom-left-radius 0.3s;
 }
 
-.Note button:hover {
+.Unlocked {
+  background-color: rgb(255, 255, 255);
+}
+
+.Locked {
+  background-color: rgb(65, 65, 65);
+  color: rgb(163, 163, 163);
+}
+
+.Unlocked button:hover {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
   transform: translateX(6px);
   background-color: rgb(37, 204, 37);
 }
 
 .Darker button {
-  background-color: rgb(244, 244, 244);
+  background-color: rgba(0, 0, 0, 0.06);
 }
-
 .Note p {
   margin: 6px 0px;
   padding: 0px 0px;
@@ -30,4 +40,8 @@
   font-style: normal;
   font-weight: 400;
   transition: transform 0.2s;
+}
+
+.Tip {
+  padding: 0;
 }

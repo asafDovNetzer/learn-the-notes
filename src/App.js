@@ -6,6 +6,7 @@ import CardGame from "./Containers/CardGame/CardGame";
 import classes from "./App.module.css";
 import Aux from "./hoc/Auxiliary";
 import * as actions from "./Store/Actions/index";
+import Spinner from "./Components/UI/Spinner/Spinner";
 
 const GameData = React.lazy(() => import("./Containers/GameData/GameData"));
 const Settings = React.lazy(() => import("./Containers/Settings/Settings"));
@@ -19,7 +20,7 @@ class App extends Component {
   render() {
     const className = [
       classes.App,
-      this.props.modelState ? classes.NoScroll : null,
+      this.props.modelState || !this.props.difficulty ? classes.NoScroll : null,
     ];
 
     const gameDataPage = () => (
@@ -32,7 +33,7 @@ class App extends Component {
     return (
       <div className={className.join(` `)}>
         <Layout>
-          <Suspense fallback={<p>loading...</p>}>
+          <Suspense fallback={<Spinner />}>
             <Switch>
               <Route path="/game-data" render={() => gameDataPage()} exact />
               <Route path="/about" component={About} exact />
@@ -48,6 +49,7 @@ class App extends Component {
 const mapStateToProps = (state) => {
   return {
     modelState: state.website.modelState,
+    difficulty: state.cardGame.difficulty,
   };
 };
 

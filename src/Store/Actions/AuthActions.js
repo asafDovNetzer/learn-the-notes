@@ -71,6 +71,9 @@ export const checkUserStatus = () => {
         dispatch(loginSuccess(user));
         dispatch(actions.getStorageAsync(user));
       }
+      if (!user) {
+        dispatch(logoutSuccess());
+      }
     });
   };
 };

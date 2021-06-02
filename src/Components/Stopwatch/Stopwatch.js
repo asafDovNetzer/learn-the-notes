@@ -12,10 +12,15 @@ const stopwatch = (props) => {
   ];
 
   return (
-    <div className={className.join(` `)} data-tip="Scroll up to pause game">
+    <div
+      className={className.join(` `)}
+      data-tip="Scroll up to pause game"
+      data-delay-show="800"
+      data-effect="solid"
+    >
       <p>{seconds.padStart(2, "0")}</p>
       <p>:</p>
-      <p>{milliSeconds.toFixed(0).padStart(2, "0")}</p>
+      <p>{milliSeconds.toFixed(0).padEnd(2, "0")}</p>
       <ReactTooltip />
     </div>
   );

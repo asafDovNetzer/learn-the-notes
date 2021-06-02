@@ -12,6 +12,7 @@ const storageIcon = (props) => (
       height="26"
       fill="currentColor"
       data-tip={props.user ? "Auto-save is on" : `Login to enable auto-save`}
+      data-effect="solid"
     >
       <use href={`${icons}#save`} />
     </svg>

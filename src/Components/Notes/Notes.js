@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import icons from "url:../../bootstrap-icons/bootstrap-icons.svg";
 import Note from "./Note/Note";
 import classes from "./Notes.module.css";
+import Spinner from "../UI/Spinner/Spinner";
 
 class Notes extends Component {
   state = {
@@ -22,12 +23,16 @@ class Notes extends Component {
   };
 
   render() {
+    if (!this.props.notesArray) {
+      return <Spinner />;
+    }
+
     const notesArray = [];
 
     if (this.state.clef % 3 === 1 || this.state.clef % 3 === 2)
-      notesArray.push(...this.props.notesArray.F);
+      notesArray.push(...this.props.notesArray?.F);
     if (this.state.clef % 3 === 1 || this.state.clef % 3 === 0)
-      notesArray.push(...this.props.notesArray.G);
+      notesArray.push(...this.props.notesArray?.G);
 
     if (this.state.value % 2) notesArray.sort((a, b) => b.value - a.value);
     if (!(this.state.value % 2)) notesArray.sort((a, b) => a.value - b.value);

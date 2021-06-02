@@ -16,3 +16,5 @@ export const LOGIN_SUCCESS = `LOGIN_SUCCESS`;
 export const LOGOUT_SUCCESS = `LOGOUT_SUCCESS`;
 export const TOGGLE_MODEL = `TOGGLE_MODEL`;
 export const SET_MESSAGE = `SET_MESSAGE`;
+export const INIT_NOTES = `INIT_NOTES`;
+export const SET_FIRST_NOTES = `SET_FIRST_NOTES`;
