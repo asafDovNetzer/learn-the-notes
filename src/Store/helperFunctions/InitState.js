@@ -42,7 +42,7 @@ export const createNoteList = (threshold = 0.4) => {
     accum++;
   }
 
-  console.log(notesArrayF, notesArrayG);
+  // console.log(notesArrayF, notesArrayG);
 
   return {
     F: notesArrayF.sort((a, b) => b.value - a.value),

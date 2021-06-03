@@ -38,12 +38,14 @@ export const updateNotes = (
   // SETTING UP FACTORS FOR CALCULATION //
 
   const triesFactor = tries < 4 ? tries ** 2 : 16;
-  const timeBase = avarageTime ? avarageTime : 5;
-  const timeFactor = ((time < 20 ? time : 20) / timeBase) * 5;
+  const timeBase = avarageTime ? avarageTime : 12;
+  const timeFactor = ((time - 1 < 20 ? time - 1 : 20) / timeBase) * 5;
 
   // CALCULATING NEW VALUE BEFORE AVARAGE CALC //
 
   const newValue = (23 - triesFactor - timeFactor) / 23;
+
+  // console.log(newValue);
 
   // CHOOSING ALL UNLOCKED NOTES //
   const unlockedNotes = allNotesArray.filter((note) => !note.locked);

@@ -14,6 +14,7 @@ class CardGame extends Component {
     interval: null,
     thisKey: null,
     playedNote: null,
+    answered: false,
   };
   componentDidMount() {
     const thisObject = this;
@@ -84,13 +85,12 @@ class CardGame extends Component {
     if (nextProps.notesArray && !nextProps.currentNote)
       prevState.thisKey?.props.onNoteArrayMount();
 
-    return {
-      ...prevState,
-      // playedNote: nextProps.currentNote?.noteName,
-    };
+    return prevState;
   }
 
   checkAnswer = (answer) => {
+    if (this.state.answered) return;
+
     const cardGameEl = document.getElementById(`cardGame`);
 
     cardGameEl.scrollIntoView({ behavior: "smooth" });
@@ -98,9 +98,12 @@ class CardGame extends Component {
     if (answer === this.props.currentNote.noteName) {
       const thisK = this;
 
-      setTimeout(function () {
+      this.setState({ answered: true });
+
+      setTimeout(() => {
         thisK.props.onRightTry(thisK.props.currentNote);
         thisK.props.onCardChange();
+        thisK.setState({ playedNote: null, answered: false });
       }, 1000);
     }
 
@@ -127,7 +130,6 @@ class CardGame extends Component {
         <Aux>
           <Card
             isRunning={this.props.isRunning}
-            time={this.props.time}
             note={this.props.currentNote}
             nextNote={this.props.nextNote?.fileName}
             handler={this.startButtonHandler}
@@ -141,11 +143,7 @@ class CardGame extends Component {
             rightAnswer={this.props.currentNote}
             answer={this.state.playedNote}
           />
-          <Stopwatch
-            time={this.props.time}
-            interval={this.state.interval}
-            isRunning={this.props.isRunning}
-          />
+          <Stopwatch />
         </Aux>
       );
     }
@@ -165,7 +163,6 @@ const mapStateToProps = (state) => {
     currentNote: state.cardGame.currentNote,
     nextNote: state.cardGame.nextNote,
     options: state.cardGame.options,
-    time: state.cardGame.stopwatch,
     isRunning: state.cardGame.isRunning,
     symbolType: state.cardGame.symbolType,
     user: state.cardGame.user,
@@ -186,6 +183,5 @@ const mapDispatchToProps = (dispatch) => {
     onNoteArrayMount: () => dispatch(actions.setFirstNotes()),
   };
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardGame);

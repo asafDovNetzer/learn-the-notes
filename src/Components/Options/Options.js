@@ -2,7 +2,7 @@ import React from "react";
 import Option from "./Option/Option";
 import classes from "./Options.module.css";
 
-const options = (props) => {
+const Options = React.memo((props) => {
   const optionsArray = [];
 
   props.options.forEach((option, index) => {
@@ -28,6 +28,6 @@ const options = (props) => {
       {optionsArray.map((option) => option)}
     </div>
   );
-};
+});
 
-export default options;
+export default Options;

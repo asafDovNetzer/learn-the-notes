@@ -8,7 +8,7 @@ export const pushAnswer = (answersArray, answer, time, tries) => {
       name: answer.noteName,
       number: answer.noteNumber,
       symbol: answer.noteSymbol,
-      time: time,
+      time: time - 1,
       try: tries,
     },
     ...answersArray,

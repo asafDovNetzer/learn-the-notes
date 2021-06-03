@@ -1,10 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import icons from "url:../../bootstrap-icons/bootstrap-icons.svg";
 import classes from "./Card.module.css";
 import Aux from "../../hoc/Auxiliary";
 
-const card = (props) => {
-  const className = [classes.Card, props.time < 0.4 ? classes.Close : null];
+const Card = (props) => {
+  // const [timeouts, setTimeouts] = useState({ short: null, long: null });
+  const [messageClassName, setMessageClassName] = useState(classes.First);
+  const [cardClassName, setCardClassName] = useState([
+    classes.Card,
+    classes.Close,
+  ]);
+
+  useEffect(() => {
+    setCardClassName([classes.Card, classes.Close]);
+    setMessageClassName(classes.First);
+
+    const short = setTimeout(() => {
+      setCardClassName([classes.Card]);
+    }, 500);
+
+    const long = setTimeout(() => {
+      setMessageClassName(classes.None);
+    }, 4000);
+
+    // setTimeouts({ short: short, long: long });
+
+    return () => {
+      clearTimeout(short);
+      clearTimeout(long);
+    };
+  }, [props.isRunning, props.note]);
 
   let card = (
     <button onClick={props.handler}>
@@ -26,11 +51,7 @@ const card = (props) => {
 
   const massageDiv =
     props.note.valuesArray.length === 0 ? (
-      <div
-        className={
-          props.time < 4 && props.time !== 0 ? classes.First : classes.None
-        }
-      >
+      <div className={messageClassName}>
         <h1>NEW NOTE !</h1>
       </div>
     ) : null;
@@ -40,7 +61,7 @@ const card = (props) => {
   return (
     <Aux>
       {massageDiv}
-      <div className={className.join(` `)}>
+      <div className={cardClassName.join(` `)}>
         {card}
         {success}
         <img className={classes.NextCard} src={nextCard} alt="something" />
@@ -49,4 +70,12 @@ const card = (props) => {
   );
 };
 
-export default card;
+const areEqual = (prevProps, nextProps) => {
+  return (
+    prevProps.answer === nextProps.answer &&
+    prevProps.isRunning === nextProps.isRunning &&
+    prevProps.note === nextProps.note
+  );
+};
+
+export default React.memo(Card, areEqual);

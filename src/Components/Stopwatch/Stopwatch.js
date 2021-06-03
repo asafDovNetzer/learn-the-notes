@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import ReactTooltip from "react-tooltip";
 import classes from "./Stopwatch.module.css";
 
@@ -7,8 +8,8 @@ const stopwatch = (props) => {
   const milliSeconds = +((props.time - seconds) * 10);
   const className = [
     classes.Stopwatch,
-    props.isRunning ? null : classes.Hidden,
-    props.time < 20 ? null : classes.Hidden,
+    !props.isRunning && classes.Hidden,
+    props.time > 20 && classes.Hidden,
   ];
 
   return (
@@ -26,4 +27,11 @@ const stopwatch = (props) => {
   );
 };
 
-export default stopwatch;
+const mapStateToProps = (state) => {
+  return {
+    time: state.cardGame.stopwatch,
+    isRunning: state.cardGame.isRunning,
+  };
+};
+
+export default connect(mapStateToProps)(stopwatch);
