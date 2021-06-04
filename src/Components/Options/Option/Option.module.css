@@ -21,10 +21,6 @@
   color: white;
 }
 
-.Button:hover {
-  background-color: #2dc21a;
-}
-
 .Button:disabled {
   opacity: 0;
 }
@@ -55,6 +51,9 @@
 }
 
 @media (min-width: 500px) {
+  .Button:hover {
+    background-color: #2dc21a;
+  }
   .Button0 {
     transform: translate(12vw, -30vh);
   }
