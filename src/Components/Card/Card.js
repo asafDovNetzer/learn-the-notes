@@ -49,8 +49,9 @@ const Card = (props) => {
     success = <h1 className={classes.Success}>✔</h1>;
   }
 
+  console.log(props.note.valuesArray);
   const massageDiv =
-    props.note.valuesArray.length === 0 ? (
+    props.note.valuesArray.length === 0 && props.isRunning ? (
       <div className={messageClassName}>
         <h1>NEW NOTE !</h1>
       </div>

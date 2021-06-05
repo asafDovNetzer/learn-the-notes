@@ -3,8 +3,30 @@
   width: 100%;
 }
 
+.Message {
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 0;
+  width: 80%;
+  height: 60px;
+  background: transparent;
+  color: rgb(24, 24, 24);
+  text-align: center;
+  opacity: 0.8;
+  font-weight: 400;
+  letter-spacing: 3px;
+  transition: opacity 0.4s;
+}
+.Hidden {
+  display: none;
+}
+
 @media (max-width: 499px) {
   .CardGame {
     padding-top: 100px;
+  }
+  .Message {
+    width: 100%;
   }
 }

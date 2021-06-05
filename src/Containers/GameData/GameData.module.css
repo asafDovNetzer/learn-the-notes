@@ -40,3 +40,23 @@
   background-color: rgba(0, 0, 0, 0.2);
   border-bottom-left-radius: 6px;
 }
+
+.MobileOnly {
+  display: none;
+}
+
+@media (max-width: 499px) {
+  .MobileOnly {
+    display: inline-block;
+    font-size: 100%;
+    font-weight: 200;
+    text-align: center;
+    width: 100%;
+    letter-spacing: 1.5px;
+    color: rgb(196, 196, 196);
+  }
+
+  .Hidden {
+    display: none;
+  }
+}

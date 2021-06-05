@@ -143,6 +143,14 @@ class CardGame extends Component {
             rightAnswer={this.props.currentNote}
             answer={this.state.playedNote}
           />
+          <h1
+            className={[
+              classes.Message,
+              !this.props.isRunning && classes.Hidden,
+            ].join(` `)}
+          >
+            Scroll up to pause
+          </h1>
           <Stopwatch />
         </Aux>
       );

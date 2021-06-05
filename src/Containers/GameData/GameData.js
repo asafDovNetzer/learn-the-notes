@@ -53,7 +53,16 @@ class GameData extends Component {
           display={this.state.displayed}
           symbols={this.props.symbols}
         />
-        <div className={classes.Selector}></div>
+        <div className={classes.Selector}>
+          <h2
+            className={[
+              classes.MobileOnly,
+              !this.state.displayed && classes.Hidden,
+            ].join(` `)}
+          >
+            Click on note for additional info
+          </h2>
+        </div>
         <Img note={this.state.note} />
         <Chart note={this.state.note} />
         <Backdrop closeModal={this.onCloseModal} show={this.state.note} />
