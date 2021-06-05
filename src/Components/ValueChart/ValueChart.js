@@ -11,7 +11,7 @@ const ValueChart = (props) => {
     const labels = [];
     const data = [];
 
-    props.note.valuesArray.forEach((value, index) => {
+    props.note.valuesArray?.forEach((value, index) => {
       data.push(value);
       labels.push(index);
     });
