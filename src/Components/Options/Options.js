@@ -21,7 +21,7 @@ const Options = React.memo((props) => {
     );
   });
 
-  const className = [classes.Options, props.isRunning ? null : classes.Hidden];
+  const className = [classes.Options, !props.isRunning && classes.Hidden];
 
   return (
     <div className={className.join(` `)}>

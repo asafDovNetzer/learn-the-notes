@@ -8,14 +8,6 @@
 }
 
 .Hidden {
-  transform: translateY(400px);
+  transform: rotateY(90deg) scale(0.8) translateY(-80px);
   opacity: 0;
 }
-/* 
-@media (max-width: 499px) {
-  .Options {
-    height: 40vh;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(7, 1fr);
-  }
-} */

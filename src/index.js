@@ -1,9 +1,7 @@
-import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import thunk from "redux-thunk";
-import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { createStore, compose, applyMiddleware, combineReducers } from "redux";
 import cardGameReducer from "./Store/Reducers/cardGameReducer";
@@ -34,9 +32,4 @@ window.onbeforeunload = () => {
   window.scrollTo(0, 0);
 };
 
-ReactDOM.render(
-  <React.StrictMode>{app}</React.StrictMode>,
-  document.getElementById("root")
-);
-
-reportWebVitals();
+ReactDOM.render(app, document.getElementById("root"));
