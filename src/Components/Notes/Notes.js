@@ -1,10 +1,12 @@
 import React from "react";
 import { Component } from "react";
 import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
 import icons from "url:../../bootstrap-icons/bootstrap-icons.svg";
 import Note from "./Note/Note";
 import classes from "./Notes.module.css";
 import Spinner from "../UI/Spinner/Spinner";
+import Aux from "../../hoc/Auxiliary";
 
 class Notes extends Component {
   state = {
@@ -23,8 +25,20 @@ class Notes extends Component {
   };
 
   render() {
+    if (!this.props.display) {
+      return null;
+    }
+
     if (!this.props.notesArray) {
-      return <Spinner />;
+      return (
+        <Aux>
+          <Spinner />
+          <div className={classes.Message}>
+            <NavLink to="/">Choose a difficulty level </NavLink>
+            <p> to initialize notes</p>
+          </div>
+        </Aux>
+      );
     }
 
     const notesArray = [];
@@ -61,7 +75,7 @@ class Notes extends Component {
     const valueButtonBorderClass =
       this.state.value !== 1 ? classes.Border : null;
 
-    let notes = (
+    const notes = (
       <div className={classes.Notes}>
         <div className={classes.TableHead}>
           <p>Note</p>
@@ -99,10 +113,6 @@ class Notes extends Component {
         </ul>
       </div>
     );
-
-    if (!this.props.display) {
-      notes = null;
-    }
 
     return notes;
   }

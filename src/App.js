@@ -17,6 +17,26 @@ class App extends Component {
     this.props.onInitApp();
   }
 
+  componentDidUpdate() {
+    if (this.props.answers.length > 7 && !this.props.user) {
+      const thisK = this;
+      window.addEventListener(`beforeunload`, thisK.unloadHandler);
+    }
+  }
+
+  componentWillUnmount() {
+    const thisK = this;
+    window.removeEventListener(`beforeunload`, thisK.unloadHandler);
+  }
+
+  unloadHandler(e) {
+    e.preventDefault();
+    const message = ``;
+
+    (e || window.event).returnValue = message;
+    return message;
+  }
+
   render() {
     const className = [
       classes.App,
@@ -50,6 +70,8 @@ const mapStateToProps = (state) => {
   return {
     modelState: state.website.modelState,
     difficulty: state.cardGame.difficulty,
+    answers: state.cardGame.answers,
+    user: state.cardGame.user,
   };
 };
 

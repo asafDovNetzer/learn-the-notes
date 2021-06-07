@@ -19,8 +19,8 @@ class Layout extends Component {
   render() {
     const authModel = this.props.modelState ? <AuthModel /> : null;
 
-    const difficultyDiv = !this.props.difficulty ? (
-      <Difficulty handler={this.onChooseDifficulty} />
+    const difficultyDiv = false ? (
+      <Difficulty chooseHandler={this.onChooseDifficulty} />
     ) : null;
 
     return (

@@ -57,7 +57,8 @@ class GameData extends Component {
           <h2
             className={[
               classes.MobileOnly,
-              !this.state.displayed && classes.Hidden,
+              (!this.state.displayed || !this.props.notesArray) &&
+                classes.Hidden,
             ].join(` `)}
           >
             Click on note for additional info

@@ -6,6 +6,10 @@
   animation: rotate 0.8s infinite;
 }
 
+.NoUser {
+  color: rgb(102, 102, 102);
+}
+
 @keyframes rotate {
   from {
     transform: rotateZ(0deg) scale(0.9);

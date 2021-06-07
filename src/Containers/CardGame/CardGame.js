@@ -7,6 +7,7 @@ import * as actions from "../../Store/Actions/index";
 import Stopwatch from "../../Components/Stopwatch/Stopwatch";
 import Spinner from "../../Components/UI/Spinner/Spinner";
 import Aux from "../../hoc/Auxiliary";
+import Difficulty from "../../Components/Difficulty/Difficulty";
 
 class CardGame extends Component {
   state = {
@@ -23,7 +24,7 @@ class CardGame extends Component {
 
     if (window.outerWidth >= 500) {
       eventFunction = function () {
-        if (window.scrollY >= 20) {
+        if (window.scrollY >= 20 && thisObject.props.difficulty) {
           thisObject.props.onResume();
           thisObject.startStopwatch();
         }
@@ -122,6 +123,10 @@ class CardGame extends Component {
     this.startStopwatch();
   };
 
+  onChooseDifficulty = (difficulty) => {
+    this.props.setDifficultyLevel(difficulty);
+  };
+
   render() {
     let cardGame = <Spinner />;
 
@@ -156,6 +161,10 @@ class CardGame extends Component {
       );
     }
 
+    if (!this.props.difficulty) {
+      cardGame = <Difficulty chooseHandler={this.onChooseDifficulty} />;
+    }
+
     return (
       <div id="cardGame" className={classes.CardGame}>
         {cardGame}
@@ -175,6 +184,7 @@ const mapStateToProps = (state) => {
     symbolType: state.cardGame.symbolType,
     user: state.cardGame.user,
     interval: state.cardGame.interval,
+    difficulty: state.cardGame.difficulty,
   };
 };
 
@@ -189,6 +199,8 @@ const mapDispatchToProps = (dispatch) => {
     onResume: () => dispatch(actions.resumeGame()),
     onTick: () => dispatch(actions.tick()),
     onNoteArrayMount: () => dispatch(actions.setFirstNotes()),
+    setDifficultyLevel: (difficulty) =>
+      dispatch(actions.initNotesArray(difficulty)),
   };
 };
 
