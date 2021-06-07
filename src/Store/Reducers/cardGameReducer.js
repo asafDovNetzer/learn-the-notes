@@ -123,7 +123,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.TICK:
       return {
         ...state,
-        stopwatch: state.stopwatch + 0.1,
+        stopwatch: Math.round(state.stopwatch + 1),
       };
     case actionTypes.CHANGE_SYMBOLS:
       return {

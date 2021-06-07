@@ -54,7 +54,7 @@ class CardGame extends Component {
 
     const interval = setInterval(() => {
       this.props.onTick();
-    }, 100);
+    }, 1000);
 
     this.setState({ interval: interval });
   };

@@ -2,17 +2,14 @@
   margin: 10px 10px;
   box-sizing: border-box;
   position: absolute;
-  top: 14vh;
+  top: 20vh;
   left: 20px;
   padding: 10px;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   background-color: lightcoral;
   transition: transform 1s;
-  align-items: center;
-  display: grid;
-  grid-template-columns: 4fr 1fr 4fr;
 }
 
 .Hidden {
@@ -22,17 +19,19 @@
 .Stopwatch p {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 200%;
-  margin: auto auto;
+  display: block;
+  margin: 12px 10px;
 }
 
 @media (max-width: 499px) {
   .Stopwatch {
     width: 80px;
     height: 80px;
-    left: -6px;
-    top: 10vh;
+    left: 0px;
+    top: unset;
+    bottom: 20vh;
   }
-  .Stopwatch p {
-    font-size: 140%;
+  .Hidden {
+    transform: translatex(-120px);
   }
 }

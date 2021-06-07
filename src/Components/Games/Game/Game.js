@@ -11,7 +11,7 @@ const game = (props) => {
       <p>{props.index + 1}.</p>
       <p>{noteName + ` ` + props.game.number}</p>
       <p>{props.game.clef}</p>
-      <p>{`${props.game.time <= 20 ? props.game.time.toFixed(1) : `+20`} s`}</p>
+      <p>{`${props.game.time <= 20 ? props.game.time.toFixed(0) : `+20`} s`}</p>
       <p>{props.game.try}</p>
     </li>
   );

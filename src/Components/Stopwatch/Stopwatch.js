@@ -5,7 +5,7 @@ import classes from "./Stopwatch.module.css";
 
 const stopwatch = (props) => {
   const seconds = Math.floor(props.time).toString();
-  const milliSeconds = +((props.time - seconds) * 10);
+  // const minu = +((props.time - seconds) * 10);
   const className = [
     classes.Stopwatch,
     !props.isRunning && classes.Hidden,
@@ -20,8 +20,8 @@ const stopwatch = (props) => {
       data-effect="solid"
     >
       <p>{seconds.padStart(2, "0")}</p>
-      <p>:</p>
-      <p>{milliSeconds.toFixed(0).padEnd(2, "0")}</p>
+      {/* <p>:</p>
+      <p>{milliSeconds.toFixed(0).padEnd(2, "0")}</p> */}
       <ReactTooltip />
     </div>
   );
