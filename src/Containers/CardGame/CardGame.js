@@ -42,6 +42,10 @@ class CardGame extends Component {
           thisObject.props.onPause();
           thisObject.stopStopwatch();
         }
+        if (window.pageYOffset >= 10 && thisObject.props.difficulty) {
+          thisObject.props.onResume();
+          thisObject.startStopwatch();
+        }
       };
       document.body.addEventListener(`touchmove`, eventFunction);
     }
